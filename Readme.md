@@ -1,11 +1,11 @@
-#2. Projekt a mesterséges intelligencia alkamazásai tárgyra
+# 2. Projekt a mesterséges intelligencia alkamazásai tárgyra
 
-###A feladat leírása:
+### A feladat leírása:
 Készítsünk egy kétszemélyes játékot, amelyben a mesterséges intelligencia ellen játszunk.
 
 A játék során használjuk a minimax/negamax algoritmust.
 
-###A játék:
+### A játék:
 
 Korongokat ejtünk egy táblában, ahol a célunk annyi, hogy egy sorban/oszlopban/átlóban lévő korongok színe megegyezzen.
 
