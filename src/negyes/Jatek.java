@@ -25,14 +25,14 @@ public class Jatek {
             System.out.println("A játékot a számítógép kezdi.");
         }
 
-        while(true){
+        while(true) {
 
             Operator operator = null;
 
             do {
-                switch (allapot.jatekos){
+                switch (allapot.jatekos) {
                     case Gep:
-                        //operator = miniMax.lepes(kezdo, p, 3, heurisztika.h(kezdo));
+                        //operator = MiniMax.lepes(allapot, p, 3);
                         operator = NegaMax.lepes(allapot, p, 3);
                         System.out.println(operator);
                         break;
@@ -43,12 +43,13 @@ public class Jatek {
                         operator = new Operator(Integer.parseInt(scanner.next()));
                         break;
                 }
-            }while (!operator.alkalmazhato(allapot));
+            } while (!operator.alkalmazhato(allapot));
 
             allapot = operator.alkalmaz(allapot);
 
-            if (allapot.cel()){
+            if (allapot.cel()) {
                 System.out.println(allapot.jatekos + " Nyert!");
+                System.out.println(allapot);
                 break;
             }
 

@@ -18,8 +18,8 @@ public class MiniMax {
     }
 
     private static int ertek(Problema p, Allapot allapot, int melyseg) {
+        allapot.jatekosCsere();
         if (allapot.cel() || melyseg == 0) {
-            System.out.println(allapot);
             return Heurisztika.h(allapot);
         }else if (allapot.jatekos == Jatekos.Gep){
             int max = Integer.MIN_VALUE;
@@ -43,7 +43,4 @@ public class MiniMax {
             return min;
         }
     }
-
-
-
 }

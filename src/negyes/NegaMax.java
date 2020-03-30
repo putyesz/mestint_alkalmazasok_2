@@ -19,31 +19,27 @@ public class NegaMax {
                 if (v > max){
                     max = v;
                     operator = o;
-                    System.out.println(v);
                 }
             }
         return operator;
     }
-
-    //TODO hj kivizsgálása, hogy mire is lenne használva,
-    // plusz dokumentáció
 
     /**
      * Jóság értékek kiszámítása.
      * @param p Probléma.
      * @param allapot Az akkor használt állapot.
      * @param melyseg Milyen mélységben vagyunk most.
-     * @return egy heurisztukus érték????
+     * @return egy heurisztukus érték
      */
     private static int ertek(Problema p, Allapot allapot, int melyseg){
         if (allapot.cel() || melyseg == 0) {
-            System.out.println(allapot);
             return Heurisztika.h(allapot);
         }else{
             int max = Integer.MIN_VALUE;
             for (Operator o : p.operatorok())
                 if (o.alkalmazhato(allapot)){
                     Allapot uj = o.alkalmaz(allapot);
+                    allapot.jatekosCsere();
                     int v = (ertek(p, uj, melyseg - 1)) * (-1);
                     if (v > max)
                         max = v;
@@ -51,5 +47,4 @@ public class NegaMax {
             return max;
         }
     }
-
 }

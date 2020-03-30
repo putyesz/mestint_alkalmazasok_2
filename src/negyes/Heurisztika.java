@@ -6,36 +6,35 @@ public class Heurisztika {
 
     private static int ertek;
 
-    /**
-     *
-     * @param allapot
-     * @return egy jóságértéket
-     */
     public static int h(Allapot allapot) {
-        //System.out.println(lehetseges(allapot));
         return lehetseges(allapot);
+    }
+
+    /**
+     * Megszámolja, az adott tömbben egy elem, hányszor fordul elő.
+     * @param arr tömb
+     * @param number szám
+     * @return egész szám (1-4)
+     */
+    private static int szamolo(int[] arr, int number){
+        return (int) Arrays.stream(arr).filter(value -> value == number).count();
     }
 
     /**
      * Értékeljük az aktuális lépésünk után, milyen jóságértékkel
      * @param resz azon 4 mező, amelyet vizsgálunk a táblán
      */
-
-    //TODO mindig kettest ír be a heurisztika!!!
     private static void ertekeles(int[] resz) {
-        if (Arrays.stream(resz).filter(value -> value == 2).count() == 4) {
+        if (szamolo(resz, 2) == 4) {
             ertek += 100;
-        }else if (Arrays.stream(resz).filter(value -> value == 2).count() == 3 &&
-                Arrays.stream(resz).filter(value -> value == 0).count() == 1){
+        }else if (szamolo(resz, 2) == 3 && szamolo(resz, 0) == 1){
             ertek += 10;
-        }else if (Arrays.stream(resz).filter(value -> value == 2).count() == 2 &&
-                Arrays.stream(resz).filter(value -> value == 0).count() == 2) {
+        }else if (szamolo(resz, 2) == 2 && szamolo(resz, 0) == 2) {
             ertek += 5;
         }
 
-        if (Arrays.stream(resz).filter(value -> value == 1).count() == 3 &&
-                Arrays.stream(resz).filter(value -> value == 0).count() == 1) {
-            ertek -= 80;
+        if (szamolo(resz, 1) == 3 && szamolo(resz, 0) == 1) {
+            ertek -= 120;
         }
     }
 
@@ -46,7 +45,7 @@ public class Heurisztika {
         for (int i = 0; i < 7; i++){
             kozep[i] = allapot.tabla[i][4];
         }
-        ertek += Arrays.stream(kozep).filter(value -> value == 2).count() * 6;
+        ertek += szamolo(kozep, 2) * 6;
 
         //Vízszintes
         for (int i = 1; i < 7; i++) {
@@ -58,13 +57,16 @@ public class Heurisztika {
         }
 
         //Függőleges
-        for (int i = 1; i < 7; i++) {
+        for (int i = 1; i < 8; i++) {
             int[] oszlop = new int[7];
-            System.arraycopy(allapot.tabla[i], 1, oszlop, 1, 6);
-            for (int j = 1; j < 4; j++) {
+            for (int ii = 1; ii < 7; ii++){
+                oszlop[ii] = allapot.tabla[ii][i];
+            }
+            for (int j = 1; j < 4; j++){
                 int[] resz = new int[]{oszlop[j], oszlop[j + 1], oszlop[j + 2], oszlop[j + 3]};
                 ertekeles(resz);
             }
+
         }
 
         //Átló jobbra fel
@@ -86,7 +88,6 @@ public class Heurisztika {
                                         allapot.tabla[i][j + 3]};
                 ertekeles(resz);
             }
-
         return ertek;
     }
 }

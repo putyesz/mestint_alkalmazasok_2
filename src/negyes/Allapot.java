@@ -23,9 +23,8 @@ public class Allapot {
     @Override
     public String toString() {
         for (int i = 1; i < 7; i++) {
-            for (int j = 1; j < 8; j++) {
+            for (int j = 1; j < 8; j++)
                 System.out.print(this.tabla[i][j] + " ");
-            }
             System.out.println();
         }
         return "";
@@ -80,13 +79,10 @@ public class Allapot {
     @Override
     public boolean equals(Object o) {
         Allapot a = (Allapot) o;
-        for (int i = 1; i < 7; i++) {
-            for (int j = 1; j < 8; j++) {
-                if (a.tabla[i][j] != this.tabla[i][j]) {
+        for (int i = 1; i < 7; i++)
+            for (int j = 1; j < 8; j++)
+                if (a.tabla[i][j] != this.tabla[i][j])
                     return false;
-                }
-            }
-        }
         return true;
     }
 }
