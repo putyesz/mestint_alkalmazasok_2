@@ -20,6 +20,12 @@ public class Allapot {
         this.jatekos = jatekos;
     }
 
+    public Allapot(Allapot allapot) {
+        this.tabla = allapot.tabla;
+        this.jatekos = allapot.jatekos;
+        jatekosCsere();
+    }
+
     @Override
     public String toString() {
         for (int i = 1; i < 7; i++) {
@@ -74,16 +80,6 @@ public class Allapot {
                 }
             }
         return false;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        Allapot a = (Allapot) o;
-        for (int i = 1; i < 7; i++)
-            for (int j = 1; j < 8; j++)
-                if (a.tabla[i][j] != this.tabla[i][j])
-                    return false;
-        return true;
     }
 }
 

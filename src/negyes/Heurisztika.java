@@ -25,15 +25,18 @@ public class Heurisztika {
      * @param resz azon 4 mező, amelyet vizsgálunk a táblán
      */
     private static void ertekeles(int[] resz) {
-        if (szamolo(resz, 2) == 4) {
+        int nulla = szamolo(resz, 0);
+        int ketto = szamolo(resz, 2);
+
+        if (ketto == 4) {
             ertek += 100;
-        }else if (szamolo(resz, 2) == 3 && szamolo(resz, 0) == 1){
+        }else if (ketto == 3 && nulla == 1){
             ertek += 10;
-        }else if (szamolo(resz, 2) == 2 && szamolo(resz, 0) == 2) {
+        }else if (ketto == 2 && nulla == 2) {
             ertek += 5;
         }
 
-        if (szamolo(resz, 1) == 3 && szamolo(resz, 0) == 1) {
+        if (szamolo(resz, 1) == 3 && nulla == 1) {
             ertek -= 120;
         }
     }
